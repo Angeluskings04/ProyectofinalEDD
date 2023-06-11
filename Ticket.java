@@ -66,6 +66,21 @@ public class Ticket{
 
     @Override
     public String toString(){
-        return "Propietario: " + clien + " Total a pagar: " + costo;
+        return "\n            Centro Cultural Universitario\n"+
+                "Rfc: YYYY090106          Regimen fiscal: 601: Ley general de personas.\n"+
+                "   Av. Insurgentes Sur 3000, C.U., 04510 Ciudad de México, CDMX\n"+
+                "Cajero: SERAFINA MONTEBELLO\n"+
+               "---------------------------------------------------------------------\n"+
+               "Cliente: "+ clien +"\n"+ 
+               "Boleto para " + clien.getEvento()+"                                      $" + costo +"\n"+
+               "---------------------------------------------------------------------\n"+
+               "                                                Total: $"+costo+ "\n"+
+               "            No se aceptan cambios en boletos rayados,\n"+
+               "                  rotos o en mal estado.\n"+
+               "\n"+"\n"+
+               "                     Visitenos en:\n"+
+               "                https://cultura.unam.mx/\n"+
+               "                                    Muchas Gracias Por Visitarnos!"+
+               "                                        ";
     }
 }

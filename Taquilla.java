@@ -23,17 +23,20 @@ public class Taquilla{
         return resultado;
     }
 
+    /*
+     * Metodo que vende un boleto dependiendo las preferencias del cliente.
+     */
     public void ventaDeBoleto(Cliente p1,Ticket d2){
         if(p1.getEvento() == "Museo"){
-            d2.museoPagar();
+            ganancias+= d2.museoPagar();
             cantidadMuseo++;
             boletosVendidos++;
         }else if(p1.getEvento() == "Cine"){
-            d2.cinePagar();
+            ganancias += d2.cinePagar();
             cantidadCine++;
             boletosVendidos++;
         }else if(p1.getEvento() == "Teatro"){
-            d2.teatroPagar();
+            ganancias += d2.teatroPagar();
             cantidadTeatro++;
             boletosVendidos++;
         }
@@ -41,6 +44,9 @@ public class Taquilla{
         System.out.println(d2);
     }
 
+    /*
+     * Metodo que genera una fila de espera con personas random y con su tipo de cliente.
+     */
     public void generaFilaNoOrdenada(){
         Random aleatorios = new Random();
         for(int i =0;i<(aleatorios.nextInt(20)+2);i++){
@@ -49,18 +55,19 @@ public class Taquilla{
         }
     }
 
-    public void ventaGeneral(){
-            int indice=0;
-            for(Cliente c : filaOrdenada){
-                Cliente c2 = filaOrdenada.getElemento(indice);
-                Ticket tk1 =new Ticket(c2);
-                ventaDeBoleto(c2, tk1);
-                filaOrdenada.dequeue();
-        }
+    public void reinicioDeDia(){
+        cantidadCine = 0;
+        cantidadTeatro = 0;
+        cantidadMuseo = 0;
+        ganancias = 0;
     }
 
+
+    /*
+     * Metodo que ordena por tipo de cliente para poder pasar a pagar.
+     */
     public void ordenarFila(){
-        generaFilaNoOrdenada();
+        //generaFilaNoOrdenada();
         for(Cliente c : filaNoOrdenada){
             if(c.getTipoDeCliente()=='a'){
                 Cliente f = c;
@@ -73,20 +80,27 @@ public class Taquilla{
             if(c.getTipoDeCliente()=='b'){
                 Cliente f = c;
                 filaOrdenada.queue(f);
+                Ticket m2 = new Ticket(f);
+                ventaDeBoleto(f, m2);
             }
         }
         for(Cliente c : filaNoOrdenada){
             if(c.getTipoDeCliente()=='c'){
                 Cliente f = c;
                 filaOrdenada.queue(f);
+                Ticket m2 = new Ticket(f);
+                ventaDeBoleto(f, m2);
             }
         }
         for(Cliente c : filaNoOrdenada){
             if(c.getTipoDeCliente()=='d'){
                 Cliente f = c;
                 filaOrdenada.queue(f);
+                Ticket m2 = new Ticket(f);
+                ventaDeBoleto(f, m2);
             }
         }
+        //System.out.println(filaOrdenada);
     }
 
 }
